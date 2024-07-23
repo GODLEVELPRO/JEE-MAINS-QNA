@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Mains Q&A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff6f61, #ff6b9f);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .question-answer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .question {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .answer {
+            margin-top: 10px;
+        }
+        .external-link {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        .external-link:hover {
+            text-decoration: underline;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            font-size: 1.2em;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #ffd700;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background: #ffde70;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>JEE Mains Q&A</h1>
+        <p>Your go-to place for JEE Mains question answers</p>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <h2>Add a New Question</h2>
+            <input type="text" id="question" placeholder="Enter your question">
+            <textarea id="answer" rows="4" placeholder="Enter the answer"></textarea>
+            <input type="text" id="link" placeholder="Enter the link (if any)">
+            <button onclick="addQuestion()">Submit</button>
+        </div>
+        <div id="qa-container">
+            <!-- Existing questions and answers will go here -->
+        </div>
+    </div>
+
+    <script>
+        function addQuestion() {
+            var question = document.getElementById('question').value;
+            var answer = document.getElementById('answer').value;
+            var link = document.getElementById('link').value;
+
+            if (question && answer) {
+                var qaContainer = document.getElementById('qa-container');
+                var qaDiv = document.createElement('div');
+                qaDiv.className = 'question-answer';
+
+                var questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.textContent = question;
+
+                var answerDiv = document.createElement('div');
+                answerDiv.className = 'answer';
+                if (link) {
+                    answerDiv.innerHTML = answer + ' For more details, visit <a href="' + link + '" class="external-link" target="_blank">this link</a>.';
+                } else {
+                    answerDiv.textContent = answer;
+                }
+
+                qaDiv.appendChild(questionDiv);
+                qaDiv.appendChild(answerDiv);
+                qaContainer.appendChild(qaDiv);
+
+                document.getElementById('question').value = '';
+                document.getElementById('answer').value = '';
+                document.getElementById('link').value = '';
+            } else {
+                alert('Please enter both question and answer.');
+            }
+        }
+    </script>
+</body>
+  </html>
+  
